@@ -1,7 +1,7 @@
 import type { Page } from 'playwright';
 
 export abstract class BasePage {
-  protected constructor(protected readonly page: Page) {}
+  constructor(protected readonly page: Page) {}
 
   async open(pathname: string): Promise<void> {
     await this.page.goto(pathname);
