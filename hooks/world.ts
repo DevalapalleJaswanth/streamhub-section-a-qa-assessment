@@ -3,12 +3,14 @@ import { World, type IWorldOptions, setWorldConstructor } from '@cucumber/cucumb
 import { getApiBaseUrl } from '../config/env';
 import { ScenarioLogger } from '../utils/logger';
 import type { EmiInputs } from '../utils/emiCalculator';
+import type { HealingResult } from '../pages/SelfHealingDemoPage';
 
 export class AutomationWorld extends World {
   context!: BrowserContext;
   page!: Page;
   request?: APIRequestContext;
   emiInputs: Partial<EmiInputs> = {};
+  selfHealingResults: HealingResult[] = [];
   tracingStarted = false;
   logger = new ScenarioLogger();
 

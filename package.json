@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "test": "npm run test:bdd",
+    "test": "npm run test:bdd -- --tags \"not @self-healing\"",
     "test:bdd": "cucumber-js --config config/cucumber.cjs",
     "test:ui": "npm run test:bdd -- --tags \"@ui\"",
     "test:api": "npm run test:bdd -- --tags \"@api\"",

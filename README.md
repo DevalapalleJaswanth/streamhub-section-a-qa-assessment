@@ -31,6 +31,8 @@ npm run typecheck
 npm run test:bdd
 ```
 
+The normal `npm run test` regression command excludes the isolated `@self-healing` demonstration. Run that demonstration explicitly with `npm run test:self-healing`.
+
 The framework currently contains no business scenarios. Once scenarios are
 added, use the tag-specific scripts:
 

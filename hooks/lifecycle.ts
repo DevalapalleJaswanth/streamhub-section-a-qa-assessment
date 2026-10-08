@@ -13,7 +13,7 @@ Before(async function (this: AutomationWorld, { pickle }) {
   this.logger.info(`Starting scenario: ${pickle.name}`);
 });
 
-Before({ tags: '@ui' }, async function (this: AutomationWorld, { pickle }) {
+Before({ tags: '@ui or @self-healing' }, async function (this: AutomationWorld, { pickle }) {
   await launchSharedBrowser();
   this.context = await getSharedBrowser().newContext({
     baseURL: env.appBaseUrl,
