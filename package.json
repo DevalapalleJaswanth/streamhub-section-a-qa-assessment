@@ -1,0 +1,36 @@
+{
+  "name": "loan-analytics-dashboard",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "test": "npm run test:bdd",
+    "test:bdd": "cucumber-js --config config/cucumber.cjs",
+    "test:ui": "npm run test:bdd -- --tags \"@ui\"",
+    "test:api": "npm run test:bdd -- --tags \"@api\"",
+    "test:self-healing": "npm run test:bdd -- --tags \"@self-healing\"",
+    "test:headed": "cross-env HEADLESS=false npm run test:bdd",
+    "typecheck": "tsc -p tsconfig.automation.json --noEmit",
+    "automation:install": "playwright install chromium"
+  },
+  "dependencies": {
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@vitejs/plugin-react": "latest",
+    "cross-env": "latest",
+    "dotenv": "latest",
+    "playwright": "latest",
+    "tsx": "latest",
+    "typescript": "latest",
+    "vite": "latest"
+  }
+}
