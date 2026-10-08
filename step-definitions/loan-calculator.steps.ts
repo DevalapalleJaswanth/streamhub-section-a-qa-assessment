@@ -59,3 +59,28 @@ Then('the displayed EMI should match the independently calculated EMI', async fu
     `Expected EMI ${expectedEmi.toFixed(2)} but displayed ${displayedEmi.toFixed(2)}. Difference ${difference.toFixed(4)} exceeded tolerance ${EMI_TOLERANCE.toFixed(2)}.`,
   );
 });
+
+Then('the principal and interest chart should be visible', async function (this: AutomationWorld) {
+  const reportPage = new ReportPage(this.page);
+  assert.equal(
+    await reportPage.principalInterestChart().isVisible(),
+    true,
+    'The principal and interest chart should be visible.',
+  );
+});
+
+Then('the principal value represented by the chart should be greater than zero', async function (this: AutomationWorld) {
+  const reportPage = new ReportPage(this.page);
+  const principal = parseCurrency(await reportPage.displayedChartValue('Principal'));
+
+  this.logger.info(`Chart principal value: ${principal.toFixed(2)}`);
+  assert.ok(principal > 0, `Expected chart principal value to be greater than zero, received ${principal}.`);
+});
+
+Then('the interest value represented by the chart should be greater than zero', async function (this: AutomationWorld) {
+  const reportPage = new ReportPage(this.page);
+  const interest = parseCurrency(await reportPage.displayedChartValue('Interest'));
+
+  this.logger.info(`Chart interest value: ${interest.toFixed(2)}`);
+  assert.ok(interest > 0, `Expected chart interest value to be greater than zero, received ${interest}.`);
+});

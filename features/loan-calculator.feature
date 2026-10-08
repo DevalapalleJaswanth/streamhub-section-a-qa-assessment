@@ -8,3 +8,13 @@ Feature: Loan calculator
     And I enter a tenure of 10 years
     And I calculate the loan
     Then the displayed EMI should match the independently calculated EMI
+
+  Scenario: Principal and interest chart renders valid loan data
+    Given I open the loan calculator
+    When I enter a loan amount of 2500000
+    And I enter an annual interest rate of 10
+    And I enter a tenure of 10 years
+    And I calculate the loan
+    Then the principal and interest chart should be visible
+    And the principal value represented by the chart should be greater than zero
+    And the interest value represented by the chart should be greater than zero

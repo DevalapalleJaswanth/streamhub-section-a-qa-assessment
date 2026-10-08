@@ -24,6 +24,19 @@ export class ReportPage extends BasePage {
     return (await this.emiValue().textContent())?.trim() ?? '';
   }
 
+  private chartLegendItem(label: 'Principal' | 'Interest') {
+    return this.page.getByRole('listitem').filter({ hasText: new RegExp(`^${label}\\b`) });
+  }
+
+  chartValue(label: 'Principal' | 'Interest') {
+    return this.chartLegendItem(label).getByText(/^\$[\d,]+\.\d{2}$/);
+  }
+
+  async displayedChartValue(label: 'Principal' | 'Interest'): Promise<string> {
+    await this.principalInterestChart().waitFor({ state: 'visible' });
+    return (await this.chartValue(label).textContent())?.trim() ?? '';
+  }
+
   principalInterestChart() {
     return this.page.getByRole('img', { name: /payment composition/i });
   }
