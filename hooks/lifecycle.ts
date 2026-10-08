@@ -1,6 +1,6 @@
 import { writeFile } from 'node:fs/promises';
 import { After, AfterAll, Before, BeforeAll, Status } from '@cucumber/cucumber';
-import { env } from '../config/env';
+import { env, getAppBaseUrl } from '../config/env';
 import { ensureEvidenceDirectories, logsDirectory, safeFileName, screenshotsDirectory, tracesDirectory } from '../utils/paths';
 import { closeSharedBrowser, getSharedBrowser, launchSharedBrowser } from './browserManager';
 import { AutomationWorld } from './world';
@@ -14,9 +14,10 @@ Before(async function (this: AutomationWorld, { pickle }) {
 });
 
 Before({ tags: '@ui or @self-healing' }, async function (this: AutomationWorld, { pickle }) {
+  const appBaseUrl = getAppBaseUrl();
   await launchSharedBrowser();
   this.context = await getSharedBrowser().newContext({
-    baseURL: env.appBaseUrl,
+    baseURL: appBaseUrl,
   });
   this.page = await this.context.newPage();
 

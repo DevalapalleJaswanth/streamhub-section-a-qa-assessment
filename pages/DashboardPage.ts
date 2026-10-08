@@ -16,4 +16,8 @@ export class DashboardPage extends BasePage {
   principalInterestChart() {
     return this.page.getByRole('img', { name: /payment composition/i });
   }
+
+  async openCurrentReport(): Promise<void> {
+    await this.page.getByRole('button', { name: /view current report/i }).click();
+  }
 }

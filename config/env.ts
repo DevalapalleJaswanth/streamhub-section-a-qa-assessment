@@ -2,10 +2,10 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-function required(name: string): string {
+function required(name: string, usage: string): string {
   const value = process.env[name];
   if (!value) {
-    throw new Error(`Missing required environment variable: ${name}. Copy .env.example to .env.`);
+    throw new Error(`Missing required environment variable: ${name}. ${usage} Copy .env.example to .env.`);
   }
   return value;
 }
@@ -17,13 +17,16 @@ function booleanValue(name: string, fallback: boolean): boolean {
 }
 
 export const env = {
-  appBaseUrl: process.env.APP_BASE_URL ?? 'http://localhost:5173',
   browser: process.env.BROWSER ?? 'chromium',
   headless: booleanValue('HEADLESS', true),
   traceOnFailure: booleanValue('TRACE_ON_FAILURE', true),
   screenshotOnFailure: booleanValue('SCREENSHOT_ON_FAILURE', true),
 } as const;
 
+export function getAppBaseUrl(): string {
+  return required('APP_BASE_URL', 'UI and self-healing execution requires this URL.');
+}
+
 export function getApiBaseUrl(): string {
-  return required('API_BASE_URL');
+  return required('API_BASE_URL', 'API execution requires this URL.');
 }
