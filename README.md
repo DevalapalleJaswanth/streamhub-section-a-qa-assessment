@@ -3,6 +3,54 @@
 Loanwise is a small React + TypeScript loan analytics application and a
 Playwright/Cucumber automation framework for Section A of the assessment.
 
+## Repository structure
+
+```text
+loan-analytics-dashboard/
+├── src/                    # React + TypeScript application
+│   ├── components/         # UI components, chart, form, summary, table
+│   ├── domain/             # Loan calculation logic and validation
+│   └── utils/              # Application-side utilities
+│
+├── features/               # Cucumber Gherkin scenarios
+├── step-definitions/       # UI, API, and self-healing step implementations
+├── pages/                  # Playwright Page Object Model classes
+├── hooks/                  # Cucumber World and browser lifecycle
+├── config/                 # Environment, Cucumber, Playwright configuration
+├── utils/                  # Automation-side helpers and independent calculations
+│
+├── sql/
+│   ├── scenario-1-round-trip/
+│   └── scenario-2-ipl-streak/
+│
+├── SELF_HEALING.md
+├── submission-results/     # Final committed assessment evidence
+│   ├── cucumber-report.html
+│   ├── execution-summary.txt
+│   ├── api-results.txt
+│   ├── self-healing-results.txt
+│   ├── screenshots/
+│   └── sql-results/
+│
+├── reports/                # Runtime Cucumber report, Git ignored
+├── evidence/               # Runtime screenshots/logs/traces, Git ignored
+├── .env.example
+├── package.json
+└── README.md
+```
+
+### Key separation
+
+- `src/` is the application under test.
+- `features/`, `step-definitions/`, `pages/`, `hooks/`, `config/`, and root
+  `utils/` form the automation framework.
+- `src/utils/` contains application utilities, while root `utils/` contains
+  automation and test utilities.
+- `sql/` contains the two independent SQL assessment exercises.
+- `reports/` and `evidence/` are transient runtime output.
+- `submission-results/` contains the reviewed evidence intentionally committed
+  for the assessment.
+
 ## Run the application
 
 ```bash
@@ -71,7 +119,7 @@ screenshots, traces, and logs under `evidence/`. These runtime locations are
 ignored by Git; reviewed final evidence can be selected and placed under
 `submission-results/`.
 
-## Application structure
+## Application behavior and architecture
 
 - `/` — dashboard landing page with loan summary cards and a
   principal-versus-interest chart.
@@ -85,20 +133,9 @@ string so a report can be refreshed or shared without a backend.
 
 The interface uses semantic headings, labels, buttons, navigation, tables, and
 an accessible chart region. Production page objects use semantic locators such
-as roles, labels, and accessible names.
-
-## Automation folder responsibilities
-
-- `features/` — business-readable Gherkin scenarios.
-- `step-definitions/` — thin translations from Gherkin to page-object or
-  API-client actions.
-- `pages/` — Playwright Page Object Model classes and semantic locators.
-- `hooks/` — Cucumber world state and browser/context lifecycle, screenshots,
-  traces, and logs.
-- `config/` — environment loading, Cucumber configuration, and Playwright
-  launch settings.
-- `utils/` — shared automation support such as EMI calculation, API access,
-  paths, and scenario logging.
+as roles, labels, and accessible names. The repository-level responsibilities
+of the application and automation folders are summarized in the structure
+overview above.
 
 ## Codex reflection
 
