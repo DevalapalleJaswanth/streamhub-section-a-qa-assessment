@@ -1,0 +1,50 @@
+Final execution summary
+=======================
+
+All results below are from the final successful executions. No stale failed
+runs are included.
+
+TypeScript typecheck
+- Command: npm run typecheck
+- Result: PASS
+
+UI suite
+- Command: APP_BASE_URL=http://127.0.0.1:5173 npm run test:ui
+- Result: PASS
+- Scenarios: 4 passed
+- Steps: 31 passed
+- Hooks: 2 passed
+
+API suite
+- Command: API_BASE_URL=https://jsonplaceholder.typicode.com npm run test:api
+- Result: PASS
+- Scenarios: 3 passed
+- Steps: 21 passed
+- Hooks: 2 passed
+- Observed statuses: 201, 201, 201; no 5xx responses
+
+Normal regression
+- Command: APP_BASE_URL=http://127.0.0.1:5173 API_BASE_URL=https://jsonplaceholder.typicode.com npm run test
+- Result: PASS
+- Scenarios: 7 passed
+- Steps: 52 passed
+- Hooks: 2 passed
+- The normal regression excludes the isolated @self-healing scenario.
+
+Self-healing demonstration
+- Command: APP_BASE_URL=http://127.0.0.1:5173 npm run test:self-healing
+- Result: PASS
+- Scenarios: 1 passed
+- Steps: 7 passed
+- Hooks: 2 passed
+- Five broken locators detected and five replacements accepted.
+
+SQL Scenario 1 — round-trip transfers
+- SQLite execution result: PASS
+- Qualifying output rows: 5
+- Text output and screenshot are stored in sql-results/.
+
+SQL Scenario 2 — IPL 2024 scoring streaks
+- SQLite execution result: PASS
+- Qualifying output rows: 4
+- Text output and screenshot are stored in sql-results/.

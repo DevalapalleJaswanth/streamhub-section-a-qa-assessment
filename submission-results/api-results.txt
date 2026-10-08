@@ -1,0 +1,22 @@
+Final API execution: PASS
+Command: API_BASE_URL=https://jsonplaceholder.typicode.com npm run test:api
+
+Scenario: excessively long title
+- HTTP status: 201
+- Observed behavior: accepted
+- 5xx response: no
+
+Scenario: unsupported and special characters
+- HTTP status: 201
+- Observed behavior: accepted
+- 5xx response: no
+
+Scenario: missing userId
+- HTTP status: 201
+- Observed behavior: accepted
+- Response did not include userId.
+- 5xx response: no
+
+Final API suite result: 3 scenarios passed, 21 steps passed, 2 hooks passed.
+The final execution observed JSONPlaceholder's actual mock-service behavior and
+did not assume invalid-looking payloads would return HTTP 400.

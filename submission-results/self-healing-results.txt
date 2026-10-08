@@ -1,0 +1,16 @@
+Final self-healing execution: PASS
+Command: APP_BASE_URL=http://127.0.0.1:5173 npm run test:self-healing
+
+- Intentionally broken locators: 5
+- Locator failures detected: 5
+- Candidate replacements validated and accepted: 5
+- Invalid candidates rejected: yes; the incorrect "Calculate Loan" candidate
+  was rejected with zero matches before the valid candidate was accepted.
+- Final scenario result: 1 scenario passed, 7 steps passed, 2 hooks passed.
+
+Accepted replacements observed in the final run:
+- wrong button accessible name -> getByRole('button', { name: /Calculate my loan/i })
+- outdated text locator -> getByLabel('Loan amount')
+- incorrect data-testid -> getByRole('spinbutton', { name: /loan amount/i })
+- generated CSS class -> getByLabel('Annual interest rate')
+- positional CSS selector -> getByLabel('Loan tenure')
