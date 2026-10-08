@@ -17,7 +17,7 @@ function booleanValue(name: string, fallback: boolean): boolean {
 }
 
 export const env = {
-  appBaseUrl: required('APP_BASE_URL'),
+  appBaseUrl: process.env.APP_BASE_URL ?? 'http://localhost:5173',
   browser: process.env.BROWSER ?? 'chromium',
   headless: booleanValue('HEADLESS', true),
   traceOnFailure: booleanValue('TRACE_ON_FAILURE', true),
